@@ -13,3 +13,8 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
 # chat-backend
+To run the project :
+- Create a new laravel project
+- clone the project from GIT
+- Update the .env file
+- Run "composer install"
