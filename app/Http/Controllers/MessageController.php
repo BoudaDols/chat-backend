@@ -41,8 +41,11 @@ class MessageController extends Controller
         $message->load('user');
 
         // Broadcast the message to other participants
-        broadcast(new NewMessage($message))->toOthers();
+        // broadcast(new NewMessage($message))->toOthers();
+        broadcast(new MessageSent($message))->toOthers();
+
 
         return response()->json(['data' => $message], 201);
     }
+
 }
