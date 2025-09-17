@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChatRoomController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\MediaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +35,8 @@ Route::middleware('auth:sanctum')->group(function () {
     // Messages
     Route::get('chat-rooms/{chatRoom}/messages', [MessageController::class, 'index']);
     Route::post('chat-rooms/{chatRoom}/messages', [MessageController::class, 'store']);
+    
+    // Media
+    Route::post('media/upload', [MediaController::class, 'upload']);
+    Route::get('media/{type}/{filename}', [MediaController::class, 'serve']);
 });

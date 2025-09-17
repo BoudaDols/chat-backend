@@ -10,6 +10,9 @@ class Message extends Model
         'user_id',
         'content',
         'type',
+        'media_url',
+        'media_filename',
+        'media_size',
         'read_at',
     ];
 

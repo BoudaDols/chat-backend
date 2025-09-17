@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\ChatRoom;
 use App\Models\Message;
 use App\Events\NewMessage;
+use App\Events\MessageSent;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -27,14 +28,20 @@ class MessageController extends Controller
         abort_if(!$chatRoom->participants->contains($request->user()), 403);
 
         $validated = $request->validate([
-            'content' => 'required|string',
-            'type' => 'required|in:text,image,file',
+            'content' => 'required_without:media_url|string',
+            'type' => 'required|in:text,image,document,audio',
+            'media_url' => 'nullable|string',
+            'media_filename' => 'nullable|string',
+            'media_size' => 'nullable|integer',
         ]);
 
         $message = $chatRoom->messages()->create([
             'user_id' => $request->user()->id,
-            'content' => $validated['content'],
+            'content' => $validated['content'] ?? '',
             'type' => $validated['type'],
+            'media_url' => $validated['media_url'] ?? null,
+            'media_filename' => $validated['media_filename'] ?? null,
+            'media_size' => $validated['media_size'] ?? null,
         ]);
 
         // Load the relationships
