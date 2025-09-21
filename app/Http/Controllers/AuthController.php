@@ -48,7 +48,10 @@ class AuthController extends Controller
             ]);
         }
 
-        $user->update(['status' => 'online']);
+        $user->update([
+            'status' => 'online',
+            'last_seen' => now()
+        ]);
         broadcast(new UserStatusChanged($user, 'online'));
         $token = $user->createToken('auth_token')->plainTextToken;
 
@@ -61,7 +64,10 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         $user = $request->user();
-        $user->update(['status' => 'offline']);
+        $user->update([
+            'status' => 'offline',
+            'last_seen' => now()
+        ]);
         broadcast(new UserStatusChanged($user, 'offline'));
         
         $user->currentAccessToken()->delete();

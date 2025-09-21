@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChatRoomController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\MediaController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,16 @@ Route::prefix('auth')->group(function () {
 Route::get('/register', [AuthController::class, 'register']);
 
 Route::middleware('auth:sanctum')->group(function () {
+    // User Profile & Status
+    Route::get('profile', [UserController::class, 'profile']);
+    Route::put('profile', [UserController::class, 'updateProfile']);
+    Route::put('status', [UserController::class, 'updateStatus']);
+    Route::put('privacy-settings', [UserController::class, 'updatePrivacySettings']);
+    Route::post('users/{user}/block', [UserController::class, 'blockUser']);
+    Route::delete('users/{user}/block', [UserController::class, 'unblockUser']);
+    Route::get('blocked-users', [UserController::class, 'blockedUsers']);
+    Route::get('users/search', [UserController::class, 'searchUsers']);
+    
     // Chat Rooms
     Route::get('chat-rooms', [ChatRoomController::class, 'index']);
     Route::post('chat-rooms', [ChatRoomController::class, 'store']);

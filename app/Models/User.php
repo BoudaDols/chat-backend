@@ -24,6 +24,9 @@ class User extends Authenticatable
         'avatar_url',
         'status',
         'last_seen',
+        'bio',
+        'phone',
+        'privacy_settings',
     ];
 
     /**
@@ -44,6 +47,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'last_seen' => 'datetime',
+        'privacy_settings' => 'array',
     ];
 
     public function chatRooms()
@@ -55,5 +60,17 @@ class User extends Authenticatable
     public function messages()
     {
         return $this->hasMany(Message::class);
+    }
+
+    public function blockedUsers()
+    {
+        return $this->belongsToMany(User::class, 'blocked_users', 'user_id', 'blocked_user_id')
+            ->withTimestamps();
+    }
+
+    public function blockedByUsers()
+    {
+        return $this->belongsToMany(User::class, 'blocked_users', 'blocked_user_id', 'user_id')
+            ->withTimestamps();
     }
 }
