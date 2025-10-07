@@ -46,6 +46,14 @@ Route::middleware('auth:sanctum')->group(function () {
     // Messages
     Route::get('chat-rooms/{chatRoom}/messages', [MessageController::class, 'index']);
     Route::post('chat-rooms/{chatRoom}/messages', [MessageController::class, 'store']);
+    Route::put('chat-rooms/{chatRoom}/messages/{message}', [MessageController::class, 'update']);
+    Route::delete('chat-rooms/{chatRoom}/messages/{message}', [MessageController::class, 'destroy']);
+    Route::get('chat-rooms/{chatRoom}/messages/search', [MessageController::class, 'search']);
+    Route::post('chat-rooms/{chatRoom}/messages/{message}/forward', [MessageController::class, 'forward']);
+    
+    // Message Reactions
+    Route::post('chat-rooms/{chatRoom}/messages/{message}/reactions', [MessageController::class, 'addReaction']);
+    Route::delete('chat-rooms/{chatRoom}/messages/{message}/reactions', [MessageController::class, 'removeReaction']);
     
     // Media
     Route::post('media/upload', [MediaController::class, 'upload']);
