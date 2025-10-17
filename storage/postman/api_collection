@@ -1,0 +1,862 @@
+{
+    "info": {
+        "name": "Laravel",
+        "description": "API Documentation",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "auth",
+            "item": [
+                {
+                    "name": "register",
+                    "item": [
+                        {
+                            "name": "[POST] api/auth/register",
+                            "request": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{base_url}}/api/auth/register",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "auth",
+                                        "register"
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "login",
+                    "item": [
+                        {
+                            "name": "[POST] api/auth/login",
+                            "request": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{base_url}}/api/auth/login",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "auth",
+                                        "login"
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "logout",
+                    "item": [
+                        {
+                            "name": "[POST] api/auth/logout",
+                            "request": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{base_url}}/api/auth/logout",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "auth",
+                                        "logout"
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "register",
+            "item": [
+                {
+                    "name": "[GET] api/register",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/register",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "register"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "profile",
+            "item": [
+                {
+                    "name": "[GET] api/profile",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/profile",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "profile"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "[PUT] api/profile",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/profile",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "profile"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "status",
+            "item": [
+                {
+                    "name": "[PUT] api/status",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/status",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "status"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "privacy-settings",
+            "item": [
+                {
+                    "name": "[PUT] api/privacy-settings",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/privacy-settings",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "privacy-settings"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "users",
+            "item": [
+                {
+                    "name": "",
+                    "item": [
+                        {
+                            "name": "block",
+                            "item": [
+                                {
+                                    "name": "[POST] api/users/{user}/block",
+                                    "request": {
+                                        "method": "POST",
+                                        "header": [
+                                            {
+                                                "key": "Accept",
+                                                "value": "application/json",
+                                                "type": "text"
+                                            },
+                                            {
+                                                "key": "Content-Type",
+                                                "value": "application/json",
+                                                "type": "text"
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{base_url}}/api/users/{user}/block",
+                                            "host": [
+                                                "{{base_url}}"
+                                            ],
+                                            "path": [
+                                                "api",
+                                                "users",
+                                                "{user}",
+                                                "block"
+                                            ]
+                                        }
+                                    }
+                                },
+                                {
+                                    "name": "[DELETE] api/users/{user}/block",
+                                    "request": {
+                                        "method": "DELETE",
+                                        "header": [
+                                            {
+                                                "key": "Accept",
+                                                "value": "application/json",
+                                                "type": "text"
+                                            },
+                                            {
+                                                "key": "Content-Type",
+                                                "value": "application/json",
+                                                "type": "text"
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{base_url}}/api/users/{user}/block",
+                                            "host": [
+                                                "{{base_url}}"
+                                            ],
+                                            "path": [
+                                                "api",
+                                                "users",
+                                                "{user}",
+                                                "block"
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "search",
+                    "item": [
+                        {
+                            "name": "[GET] api/users/search",
+                            "request": {
+                                "method": "GET",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{base_url}}/api/users/search",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "users",
+                                        "search"
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "blocked-users",
+            "item": [
+                {
+                    "name": "[GET] api/blocked-users",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/blocked-users",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "blocked-users"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "chat-rooms",
+            "item": [
+                {
+                    "name": "[GET] api/chat-rooms",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/chat-rooms",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "chat-rooms"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "[POST] api/chat-rooms",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/chat-rooms",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "chat-rooms"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "[GET] api/chat-rooms/{chatRoom}",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/chat-rooms/{chatRoom}",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "chat-rooms",
+                                "{chatRoom}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "",
+                    "item": [
+                        {
+                            "name": "messages",
+                            "item": [
+                                {
+                                    "name": "[GET] api/chat-rooms/{chatRoom}/messages",
+                                    "request": {
+                                        "method": "GET",
+                                        "header": [
+                                            {
+                                                "key": "Accept",
+                                                "value": "application/json",
+                                                "type": "text"
+                                            },
+                                            {
+                                                "key": "Content-Type",
+                                                "value": "application/json",
+                                                "type": "text"
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{base_url}}/api/chat-rooms/{chatRoom}/messages",
+                                            "host": [
+                                                "{{base_url}}"
+                                            ],
+                                            "path": [
+                                                "api",
+                                                "chat-rooms",
+                                                "{chatRoom}",
+                                                "messages"
+                                            ]
+                                        }
+                                    }
+                                },
+                                {
+                                    "name": "[POST] api/chat-rooms/{chatRoom}/messages",
+                                    "request": {
+                                        "method": "POST",
+                                        "header": [
+                                            {
+                                                "key": "Accept",
+                                                "value": "application/json",
+                                                "type": "text"
+                                            },
+                                            {
+                                                "key": "Content-Type",
+                                                "value": "application/json",
+                                                "type": "text"
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{base_url}}/api/chat-rooms/{chatRoom}/messages",
+                                            "host": [
+                                                "{{base_url}}"
+                                            ],
+                                            "path": [
+                                                "api",
+                                                "chat-rooms",
+                                                "{chatRoom}",
+                                                "messages"
+                                            ]
+                                        }
+                                    }
+                                },
+                                {
+                                    "name": "[PUT] api/chat-rooms/{chatRoom}/messages/{message}",
+                                    "request": {
+                                        "method": "PUT",
+                                        "header": [
+                                            {
+                                                "key": "Accept",
+                                                "value": "application/json",
+                                                "type": "text"
+                                            },
+                                            {
+                                                "key": "Content-Type",
+                                                "value": "application/json",
+                                                "type": "text"
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{base_url}}/api/chat-rooms/{chatRoom}/messages/{message}",
+                                            "host": [
+                                                "{{base_url}}"
+                                            ],
+                                            "path": [
+                                                "api",
+                                                "chat-rooms",
+                                                "{chatRoom}",
+                                                "messages",
+                                                "{message}"
+                                            ]
+                                        }
+                                    }
+                                },
+                                {
+                                    "name": "[DELETE] api/chat-rooms/{chatRoom}/messages/{message}",
+                                    "request": {
+                                        "method": "DELETE",
+                                        "header": [
+                                            {
+                                                "key": "Accept",
+                                                "value": "application/json",
+                                                "type": "text"
+                                            },
+                                            {
+                                                "key": "Content-Type",
+                                                "value": "application/json",
+                                                "type": "text"
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{base_url}}/api/chat-rooms/{chatRoom}/messages/{message}",
+                                            "host": [
+                                                "{{base_url}}"
+                                            ],
+                                            "path": [
+                                                "api",
+                                                "chat-rooms",
+                                                "{chatRoom}",
+                                                "messages",
+                                                "{message}"
+                                            ]
+                                        }
+                                    }
+                                },
+                                {
+                                    "name": "search",
+                                    "item": [
+                                        {
+                                            "name": "[GET] api/chat-rooms/{chatRoom}/messages/search",
+                                            "request": {
+                                                "method": "GET",
+                                                "header": [
+                                                    {
+                                                        "key": "Accept",
+                                                        "value": "application/json",
+                                                        "type": "text"
+                                                    },
+                                                    {
+                                                        "key": "Content-Type",
+                                                        "value": "application/json",
+                                                        "type": "text"
+                                                    }
+                                                ],
+                                                "url": {
+                                                    "raw": "{{base_url}}/api/chat-rooms/{chatRoom}/messages/search",
+                                                    "host": [
+                                                        "{{base_url}}"
+                                                    ],
+                                                    "path": [
+                                                        "api",
+                                                        "chat-rooms",
+                                                        "{chatRoom}",
+                                                        "messages",
+                                                        "search"
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "",
+                                    "item": [
+                                        {
+                                            "name": "forward",
+                                            "item": [
+                                                {
+                                                    "name": "[POST] api/chat-rooms/{chatRoom}/messages/{message}/forward",
+                                                    "request": {
+                                                        "method": "POST",
+                                                        "header": [
+                                                            {
+                                                                "key": "Accept",
+                                                                "value": "application/json",
+                                                                "type": "text"
+                                                            },
+                                                            {
+                                                                "key": "Content-Type",
+                                                                "value": "application/json",
+                                                                "type": "text"
+                                                            }
+                                                        ],
+                                                        "url": {
+                                                            "raw": "{{base_url}}/api/chat-rooms/{chatRoom}/messages/{message}/forward",
+                                                            "host": [
+                                                                "{{base_url}}"
+                                                            ],
+                                                            "path": [
+                                                                "api",
+                                                                "chat-rooms",
+                                                                "{chatRoom}",
+                                                                "messages",
+                                                                "{message}",
+                                                                "forward"
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "reactions",
+                                            "item": [
+                                                {
+                                                    "name": "[POST] api/chat-rooms/{chatRoom}/messages/{message}/reactions",
+                                                    "request": {
+                                                        "method": "POST",
+                                                        "header": [
+                                                            {
+                                                                "key": "Accept",
+                                                                "value": "application/json",
+                                                                "type": "text"
+                                                            },
+                                                            {
+                                                                "key": "Content-Type",
+                                                                "value": "application/json",
+                                                                "type": "text"
+                                                            }
+                                                        ],
+                                                        "url": {
+                                                            "raw": "{{base_url}}/api/chat-rooms/{chatRoom}/messages/{message}/reactions",
+                                                            "host": [
+                                                                "{{base_url}}"
+                                                            ],
+                                                            "path": [
+                                                                "api",
+                                                                "chat-rooms",
+                                                                "{chatRoom}",
+                                                                "messages",
+                                                                "{message}",
+                                                                "reactions"
+                                                            ]
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "name": "[DELETE] api/chat-rooms/{chatRoom}/messages/{message}/reactions",
+                                                    "request": {
+                                                        "method": "DELETE",
+                                                        "header": [
+                                                            {
+                                                                "key": "Accept",
+                                                                "value": "application/json",
+                                                                "type": "text"
+                                                            },
+                                                            {
+                                                                "key": "Content-Type",
+                                                                "value": "application/json",
+                                                                "type": "text"
+                                                            }
+                                                        ],
+                                                        "url": {
+                                                            "raw": "{{base_url}}/api/chat-rooms/{chatRoom}/messages/{message}/reactions",
+                                                            "host": [
+                                                                "{{base_url}}"
+                                                            ],
+                                                            "path": [
+                                                                "api",
+                                                                "chat-rooms",
+                                                                "{chatRoom}",
+                                                                "messages",
+                                                                "{message}",
+                                                                "reactions"
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "media",
+            "item": [
+                {
+                    "name": "upload",
+                    "item": [
+                        {
+                            "name": "[POST] api/media/upload",
+                            "request": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json",
+                                        "type": "text"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{base_url}}/api/media/upload",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "media",
+                                        "upload"
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "[GET] api/media/{type}/{filename}",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "type": "text"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/media/{type}/{filename}",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "media",
+                                "{type}",
+                                "{filename}"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost"
+        }
+    ]
+}
