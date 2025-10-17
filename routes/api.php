@@ -42,6 +42,15 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('chat-rooms', [ChatRoomController::class, 'index']);
     Route::post('chat-rooms', [ChatRoomController::class, 'store']);
     Route::get('chat-rooms/{chatRoom}', [ChatRoomController::class, 'show']);
+    Route::put('chat-rooms/{chatRoom}', [ChatRoomController::class, 'update']);
+    Route::delete('chat-rooms/{chatRoom}', [ChatRoomController::class, 'destroy']);
+    Route::post('chat-rooms/{chatRoom}/leave', [ChatRoomController::class, 'leave']);
+    
+    // Chat Room Participants
+    Route::post('chat-rooms/{chatRoom}/participants', [ChatRoomController::class, 'addParticipant']);
+    Route::delete('chat-rooms/{chatRoom}/participants/{user}', [ChatRoomController::class, 'removeParticipant']);
+    Route::post('chat-rooms/{chatRoom}/participants/{user}/mute', [ChatRoomController::class, 'muteParticipant']);
+    Route::delete('chat-rooms/{chatRoom}/participants/{user}/mute', [ChatRoomController::class, 'unmuteParticipant']);
     
     // Messages
     Route::get('chat-rooms/{chatRoom}/messages', [MessageController::class, 'index']);
