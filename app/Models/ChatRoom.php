@@ -8,13 +8,22 @@ class ChatRoom extends Model
     protected $fillable = [
         'name',
         'type',
+        'avatar_url',
+        'description',
+        'created_by',
+        'settings',
     ];
 
     protected $with = ['participants', 'lastMessage'];
 
+    protected $casts = [
+        'settings' => 'array',
+    ];
+
     public function participants()
     {
         return $this->belongsToMany(User::class, 'chat_room_user')
+            ->withPivot(['role', 'is_muted', 'muted_until'])
             ->withTimestamps();
     }
 
@@ -26,5 +35,33 @@ class ChatRoom extends Model
     public function lastMessage()
     {
         return $this->hasOne(Message::class)->latest();
+    }
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function admins()
+    {
+        return $this->belongsToMany(User::class, 'chat_room_user')
+            ->wherePivot('role', 'admin')
+            ->orWherePivot('role', 'owner');
+    }
+
+    public function isAdmin($userId)
+    {
+        return $this->participants()
+            ->where('user_id', $userId)
+            ->whereIn('role', ['admin', 'owner'])
+            ->exists();
+    }
+
+    public function isOwner($userId)
+    {
+        return $this->participants()
+            ->where('user_id', $userId)
+            ->where('role', 'owner')
+            ->exists();
     }
 }
