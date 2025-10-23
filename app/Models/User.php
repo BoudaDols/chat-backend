@@ -27,6 +27,8 @@ class User extends Authenticatable
         'bio',
         'phone',
         'privacy_settings',
+        'two_factor_enabled',
+        'two_factor_enabled_at',
     ];
 
     /**
@@ -37,6 +39,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'two_factor_secret',
     ];
 
     /**
@@ -48,6 +51,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'last_seen' => 'datetime',
         'privacy_settings' => 'array',
+        'two_factor_enabled' => 'boolean',
+        'two_factor_enabled_at' => 'datetime',
     ];
 
     public function chatRooms()

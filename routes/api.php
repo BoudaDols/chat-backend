@@ -7,6 +7,8 @@ use App\Http\Controllers\ChatRoomController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TwoFactorController;
+use App\Http\Controllers\ModerationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,4 +70,24 @@ Route::middleware('auth:sanctum')->group(function () {
     // Media
     Route::post('media/upload', [MediaController::class, 'upload']);
     Route::get('media/{type}/{filename}', [MediaController::class, 'serve']);
+    
+    // Two-Factor Authentication
+    Route::get('2fa/status', [TwoFactorController::class, 'status']);
+    Route::post('2fa/setup', [TwoFactorController::class, 'setup']);
+    Route::post('2fa/verify', [TwoFactorController::class, 'verify']);
+    Route::post('2fa/disable', [TwoFactorController::class, 'disable']);
+    
+    // Content Moderation
+    Route::post('messages/{message}/report', [ModerationController::class, 'reportMessage']);
+    Route::get('moderation/reports', [ModerationController::class, 'getReports']);
+    Route::put('moderation/reports/{report}', [ModerationController::class, 'reviewReport']);
+    Route::get('my-reports', [ModerationController::class, 'getUserReports']);
+    
+    // IP Blocking (Admin only)
+    Route::post('moderation/block-ip', [ModerationController::class, 'blockIp']);
+    Route::post('moderation/unblock-ip', [ModerationController::class, 'unblockIp']);
+    Route::get('moderation/blocked-ips', [ModerationController::class, 'getBlockedIps']);
+    
+    // Audit Logs (Admin only)
+    Route::get('moderation/audit-logs', [ModerationController::class, 'getAuditLogs']);
 });
