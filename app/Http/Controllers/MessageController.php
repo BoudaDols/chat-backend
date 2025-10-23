@@ -148,11 +148,9 @@ class MessageController extends Controller
             'query' => 'required|string|min:2'
         ]);
 
-        $searchQuery = addcslashes($validated['query'], '%_');
-        
         $messages = $chatRoom->messages()
             ->notDeleted()
-            ->where('content', 'like', '%' . $searchQuery . '%')
+            ->where('content', 'like', '%' . $validated['query'] . '%')
             ->with(['user', 'reactions.user', 'replyTo.user'])
             ->latest()
             ->paginate(20);

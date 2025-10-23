@@ -20,8 +20,10 @@ return new class extends Migration
             $table->json('privacy_settings')->nullable();
         });
         
-        // Update existing status column to enum
-        DB::statement("ALTER TABLE users MODIFY COLUMN status ENUM('online', 'offline', 'away', 'busy') DEFAULT 'offline'");
+        // Update existing status column (SQLite compatible)
+        if (DB::getDriverName() !== 'sqlite') {
+            DB::statement("ALTER TABLE users MODIFY COLUMN status ENUM('online', 'offline', 'away', 'busy') DEFAULT 'offline'");
+        }
     }
 
     /**
@@ -34,6 +36,8 @@ return new class extends Migration
         });
         
         // Revert status column to string
-        DB::statement("ALTER TABLE users MODIFY COLUMN status VARCHAR(255)");
+        if (DB::getDriverName() !== 'sqlite') {
+            DB::statement("ALTER TABLE users MODIFY COLUMN status VARCHAR(255)");
+        }
     }
 };

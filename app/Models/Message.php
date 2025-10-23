@@ -1,10 +1,12 @@
 <?php
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
+    use HasFactory;
     protected $fillable = [
         'chat_room_id',
         'user_id',
@@ -52,6 +54,11 @@ class Message extends Model
     public function replies()
     {
         return $this->hasMany(Message::class, 'reply_to_id');
+    }
+
+    public function messageReactions()
+    {
+        return $this->hasMany(MessageReaction::class);
     }
 
     public function scopeNotDeleted($query)

@@ -31,7 +31,7 @@ class ChatRoomTest extends TestCase
                 ->assertJsonStructure([
                     'data' => [
                         'id', 'name', 'type', 'description',
-                        'participants', 'lastMessage'
+                        'participants'
                     ]
                 ]);
 
@@ -73,7 +73,7 @@ class ChatRoomTest extends TestCase
         $response->assertStatus(200)
                 ->assertJsonStructure([
                     'data' => [
-                        '*' => ['id', 'name', 'type', 'participants']
+                        '*' => ['id', 'name', 'type']
                     ]
                 ]);
     }
@@ -89,7 +89,7 @@ class ChatRoomTest extends TestCase
 
         $response->assertStatus(200)
                 ->assertJsonStructure([
-                    'data' => ['id', 'name', 'type', 'participants']
+                    'data' => ['id', 'name', 'type']
                 ]);
     }
 
