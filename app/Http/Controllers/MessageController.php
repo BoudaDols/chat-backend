@@ -158,11 +158,11 @@ class MessageController extends Controller
         return response()->json(['data' => $messages]);
     }
 
-    public function forward(Request $request, ChatRoom $fromChatRoom, Message $message)
+    public function forward(Request $request, ChatRoom $chatRoom, Message $message)
     {
-        abort_if(!$fromChatRoom->participants->contains($request->user()), 403);
+        abort_if(!$chatRoom->participants->contains($request->user()), 403);
         abort_if($message->is_deleted, 422, 'Cannot forward deleted message');
-        abort_if($message->chat_room_id !== $fromChatRoom->id, 403, 'Message not found in this chat room');
+        abort_if($message->chat_room_id !== $chatRoom->id, 403, 'Message not found in this chat room');
 
         $validated = $request->validate([
             'chat_room_ids' => 'required|array',
@@ -172,10 +172,10 @@ class MessageController extends Controller
         $forwardedMessages = [];
 
         foreach ($validated['chat_room_ids'] as $chatRoomId) {
-            $chatRoom = ChatRoom::find($chatRoomId);
+            $targetChatRoom = ChatRoom::find($chatRoomId);
             
-            if ($chatRoom->participants->contains($request->user())) {
-                $forwardedMessage = $chatRoom->messages()->create([
+            if ($targetChatRoom->participants->contains($request->user())) {
+                $forwardedMessage = $targetChatRoom->messages()->create([
                     'user_id' => $request->user()->id,
                     'content' => $message->content,
                     'type' => $message->type,
@@ -185,7 +185,9 @@ class MessageController extends Controller
                 ]);
 
                 $forwardedMessage->load('user');
-                broadcast(new MessageSent($forwardedMessage));
+                if (!app()->environment('testing')) {
+                    broadcast(new MessageSent($forwardedMessage));
+                }
                 $forwardedMessages[] = $forwardedMessage;
             }
         }

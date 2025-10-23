@@ -161,7 +161,7 @@ class ModerationTest extends TestCase
                 ->assertJsonStructure([
                     'data' => [
                         'data' => [
-                            '*' => ['id', 'ip_address', 'reason', 'blockedBy']
+                            '*' => ['id', 'ip_address', 'reason', 'blocked_by']
                         ]
                     ]
                 ]);
