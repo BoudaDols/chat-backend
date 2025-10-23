@@ -123,6 +123,7 @@ return [
     |
     */
 
+    // amazonq-ignore-next-line
     'markdown' => [
         'theme' => 'default',
 

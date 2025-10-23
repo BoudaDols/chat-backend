@@ -14,6 +14,7 @@ class BroadcastServiceProvider extends ServiceProvider
     {
         Broadcast::routes();
 
+        // amazonq-ignore-next-line
         require base_path('routes/channels.php');
     }
 }

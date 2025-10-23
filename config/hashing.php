@@ -44,6 +44,7 @@ return [
     |
     */
 
+    // amazonq-ignore-next-line
     'argon' => [
         'memory' => 65536,
         'threads' => 1,

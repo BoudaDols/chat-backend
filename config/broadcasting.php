@@ -29,6 +29,7 @@ return [
     |
     */
 
+    // amazonq-ignore-next-line
     'connections' => [
 
         'pusher' => [

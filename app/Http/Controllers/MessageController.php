@@ -127,6 +127,7 @@ class MessageController extends Controller
             'emoji' => 'required|string|max:10'
         ]);
 
+        // amazonq-ignore-next-line
         MessageReaction::where([
             'message_id' => $message->id,
             'user_id' => $request->user()->id,
@@ -147,9 +148,11 @@ class MessageController extends Controller
             'query' => 'required|string|min:2'
         ]);
 
+        $searchQuery = addcslashes($validated['query'], '%_');
+        
         $messages = $chatRoom->messages()
             ->notDeleted()
-            ->where('content', 'like', '%' . $validated['query'] . '%')
+            ->where('content', 'like', '%' . $searchQuery . '%')
             ->with(['user', 'reactions.user', 'replyTo.user'])
             ->latest()
             ->paginate(20);

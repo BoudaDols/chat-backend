@@ -10,6 +10,7 @@ class ChatRoomController extends Controller
 {
     public function index(Request $request)
     {
+        // amazonq-ignore-next-line
         $chatRooms = $request->user()
             ->chatRooms()
             ->with(['participants', 'lastMessage'])

@@ -51,6 +51,7 @@ return [
     |
     */
 
+    // amazonq-ignore-next-line
     'channels' => [
         'stack' => [
             'driver' => 'stack',

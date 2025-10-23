@@ -109,7 +109,9 @@ class UserController extends Controller
         $currentUser = $request->user();
         $blockedUserIds = $currentUser->blockedUsers()->pluck('users.id');
 
-        $users = User::where('name', 'like', '%' . $validated['query'] . '%')
+        $searchQuery = addcslashes($validated['query'], '%_');
+        
+        $users = User::where('name', 'like', '%' . $searchQuery . '%')
             ->where('id', '!=', $currentUser->id)
             ->whereNotIn('id', $blockedUserIds)
             ->select('id', 'name', 'avatar_url', 'status', 'last_seen')

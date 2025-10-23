@@ -21,7 +21,7 @@ class AuthController extends Controller
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
-            'status' => 'online',
+            'status' => config('app.default_user_status', 'offline'),
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
@@ -49,10 +49,10 @@ class AuthController extends Controller
         }
 
         $user->update([
-            'status' => 'online',
+            'status' => config('app.login_status', 'online'),
             'last_seen' => now()
         ]);
-        broadcast(new UserStatusChanged($user, 'online'));
+        broadcast(new UserStatusChanged($user, config('app.login_status', 'online')));
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
@@ -65,10 +65,10 @@ class AuthController extends Controller
     {
         $user = $request->user();
         $user->update([
-            'status' => 'offline',
+            'status' => config('app.logout_status', 'offline'),
             'last_seen' => now()
         ]);
-        broadcast(new UserStatusChanged($user, 'offline'));
+        broadcast(new UserStatusChanged($user, config('app.logout_status', 'offline')));
         
         $user->currentAccessToken()->delete();
 

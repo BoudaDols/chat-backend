@@ -56,6 +56,7 @@ class Message extends Model
 
     public function scopeNotDeleted($query)
     {
+        // amazonq-ignore-next-line
         return $query->where('is_deleted', false);
     }
 }

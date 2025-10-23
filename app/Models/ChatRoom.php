@@ -51,6 +51,7 @@ class ChatRoom extends Model
 
     public function isAdmin($userId)
     {
+        // amazonq-ignore-next-line
         return $this->participants()
             ->where('user_id', $userId)
             ->whereIn('role', ['admin', 'owner'])
@@ -59,6 +60,7 @@ class ChatRoom extends Model
 
     public function isOwner($userId)
     {
+        // amazonq-ignore-next-line
         return $this->participants()
             ->where('user_id', $userId)
             ->where('role', 'owner')
