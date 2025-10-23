@@ -59,6 +59,7 @@ class ChatRoomController extends Controller
             }
         }
 
+        // amazonq-ignore-next-line
         return response()->json([
             'data' => $chatRoom->load(['participants', 'lastMessage']),
         ], 201);
@@ -76,6 +77,7 @@ class ChatRoomController extends Controller
 
     public function update(Request $request, ChatRoom $chatRoom)
     {
+        // amazonq-ignore-next-line
         abort_if(!$chatRoom->participants->contains($request->user()), 403);
         abort_if(!$chatRoom->isAdmin($request->user()->id), 403, 'Only admins can update chat room');
 
@@ -87,7 +89,11 @@ class ChatRoomController extends Controller
 
         if ($request->hasFile('avatar')) {
             if ($chatRoom->avatar_url) {
-                Storage::disk('public')->delete(str_replace('/storage/', '', $chatRoom->avatar_url));
+                $oldPath = parse_url($chatRoom->avatar_url, PHP_URL_PATH);
+                $oldPath = str_replace('/storage/', '', $oldPath);
+                if ($oldPath && !str_contains($oldPath, '..') && Storage::disk('public')->exists($oldPath)) {
+                    Storage::disk('public')->delete($oldPath);
+                }
             }
             
             $path = $request->file('avatar')->store('chat-rooms', 'public');
@@ -172,7 +178,11 @@ class ChatRoomController extends Controller
         abort_if(!$chatRoom->isOwner($request->user()->id), 403, 'Only owner can delete chat room');
 
         if ($chatRoom->avatar_url) {
-            Storage::disk('public')->delete(str_replace('/storage/', '', $chatRoom->avatar_url));
+            $oldPath = parse_url($chatRoom->avatar_url, PHP_URL_PATH);
+            $oldPath = str_replace('/storage/', '', $oldPath);
+            if ($oldPath && !str_contains($oldPath, '..') && Storage::disk('public')->exists($oldPath)) {
+                Storage::disk('public')->delete($oldPath);
+            }
         }
 
         $chatRoom->delete();

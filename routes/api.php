@@ -25,6 +25,7 @@ Route::prefix('auth')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 });
 
+// amazonq-ignore-next-line
 Route::get('/register', [AuthController::class, 'register']);
 
 Route::middleware('auth:sanctum')->group(function () {

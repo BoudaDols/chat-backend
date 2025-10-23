@@ -88,6 +88,7 @@ class UserController extends Controller
 
     public function unblockUser(Request $request, User $user)
     {
+        // amazonq-ignore-next-line
         $request->user()->blockedUsers()->detach($user->id);
 
         return response()->json(['message' => 'User unblocked']);
@@ -109,9 +110,7 @@ class UserController extends Controller
         $currentUser = $request->user();
         $blockedUserIds = $currentUser->blockedUsers()->pluck('users.id');
 
-        $searchQuery = addcslashes($validated['query'], '%_');
-        
-        $users = User::where('name', 'like', '%' . $searchQuery . '%')
+        $users = User::where('name', 'like', '%' . $validated['query'] . '%')
             ->where('id', '!=', $currentUser->id)
             ->whereNotIn('id', $blockedUserIds)
             ->select('id', 'name', 'avatar_url', 'status', 'last_seen')

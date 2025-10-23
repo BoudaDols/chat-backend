@@ -164,6 +164,7 @@ class MessageController extends Controller
     {
         abort_if(!$fromChatRoom->participants->contains($request->user()), 403);
         abort_if($message->is_deleted, 422, 'Cannot forward deleted message');
+        abort_if($message->chat_room_id !== $fromChatRoom->id, 403, 'Message not found in this chat room');
 
         $validated = $request->validate([
             'chat_room_ids' => 'required|array',

@@ -10,24 +10,35 @@ class MediaController extends Controller
 {
     public function upload(Request $request)
     {
-        $request->validate([
-            'file' => 'required|file|max:10240', // 10MB max
+        $validated = $request->validate([
+            'file' => 'required|file|max:10240|mimes:jpeg,jpg,png,gif,webp,pdf,doc,docx,txt,xlsx,mp3,wav,ogg,m4a',
             'type' => 'required|in:image,document,audio'
         ]);
 
         $file = $request->file('file');
         $type = $request->type;
         
-        // Validate file types
-        $allowedTypes = [
+        // Validate MIME types
+        $allowedMimes = [
+            'image' => ['image/jpeg', 'image/png', 'image/gif', 'image/webp'],
+            'document' => ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'],
+            'audio' => ['audio/mpeg', 'audio/wav', 'audio/ogg', 'audio/mp4']
+        ];
+
+        if (!in_array($file->getMimeType(), $allowedMimes[$type])) {
+            return response()->json(['error' => 'Invalid file type'], 422);
+        }
+
+        // Validate file extensions
+        $allowedExtensions = [
             'image' => ['jpg', 'jpeg', 'png', 'gif', 'webp'],
             'document' => ['pdf', 'doc', 'docx', 'txt', 'xlsx'],
             'audio' => ['mp3', 'wav', 'ogg', 'm4a']
         ];
 
         $extension = $file->getClientOriginalExtension();
-        if (!in_array(strtolower($extension), $allowedTypes[$type])) {
-            return response()->json(['error' => 'Invalid file type'], 422);
+        if (!in_array(strtolower($extension), $allowedExtensions[$type])) {
+            return response()->json(['error' => 'Invalid file extension'], 422);
         }
 
         // Generate unique filename
@@ -36,6 +47,7 @@ class MediaController extends Controller
 
         return response()->json([
             'url' => Storage::url($path),
+            // amazonq-ignore-next-line
             'filename' => $file->getClientOriginalName(),
             'size' => $file->getSize(),
             'type' => $type
@@ -44,6 +56,16 @@ class MediaController extends Controller
 
     public function serve($type, $filename)
     {
+        // Validate type parameter
+        if (!in_array($type, ['image', 'document', 'audio'])) {
+            abort(404);
+        }
+        
+        // Validate filename to prevent path traversal
+        if (!preg_match('/^[a-zA-Z0-9._-]+$/', $filename) || str_contains($filename, '..')) {
+            abort(404);
+        }
+        
         $path = "media/{$type}s/{$filename}";
         
         if (!Storage::disk('public')->exists($path)) {

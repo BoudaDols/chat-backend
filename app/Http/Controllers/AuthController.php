@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Events\UserStatusChanged;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
@@ -13,7 +14,7 @@ class AuthController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
         ]);
 
@@ -35,6 +36,14 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        $key = 'login.' . $request->ip();
+        
+        if (RateLimiter::tooManyAttempts($key, 5)) {
+            throw ValidationException::withMessages([
+                'email' => ['Too many login attempts. Please try again later.'],
+            ]);
+        }
+
         $validated = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -43,10 +52,13 @@ class AuthController extends Controller
         $user = User::where('email', $validated['email'])->first();
 
         if (!$user || !Hash::check($validated['password'], $user->password)) {
+            RateLimiter::hit($key, 60);
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect.'],
             ]);
         }
+        
+        RateLimiter::clear($key);
 
         $user->update([
             'status' => config('app.login_status', 'online'),
